@@ -1,0 +1,27 @@
+{
+  "name": "fulhaus-server",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "tech-asessment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "Vlad-Lab319"
+  },
+  "keywords": [
+    "fulhaus"
+  ],
+  "author": "Vladimir Eremenko",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "express": "^4.18.1",
+    "mongodb": "^4.5.0",
+    "mongoose": "^6.2.10",
+    "nodemon": "^2.0.16"
+  }
+}
