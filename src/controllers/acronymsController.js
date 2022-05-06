@@ -14,17 +14,17 @@ export const getAcronyms = (req, res) => {
 }
 
 export const searchAcronyms = (req, res) => {
-  const searchQuery = req.query;
-  console.log(searchQuery);
-  if (searchQuery['search']) {
+  const { limit, page, search } = req.query;
+  const skipRecords = (page - 1) * limit;
+  if (search) {
 
-    Acronym.find({ definition: { '$regex': searchQuery["search"], '$options': 'i' } }, (err, acronym) => {
+    Acronym.find({ definition: { '$regex': search, '$options': 'i' } }, (err, acronym) => {
       if (err) {
         res.send(err);
       }
       console.log('length: ', acronym.length);
       res.json(acronym);
-    });
+    }).limit(limit).skip(skipRecords);
   } else {
 
     Acronym.find({}, (err, acronym) => {
@@ -33,8 +33,6 @@ export const searchAcronyms = (req, res) => {
       }
       res.json(acronym);
     });
-
-    // res.send('Not found');
   }
 }
 
@@ -57,15 +55,6 @@ export const updateAcronym = (req, res) => {
     res.json(acronym);
   });
 }
-
-// export const deleteAcronym = (req, res) => {
-//   Acronym.remove({ _id: req.params.acronymID}, (err, acronym) => {
-//     if (err) {
-//       res.send(err);
-//     }
-//     res.json({message: 'record deleted!'});
-//   });
-// }
 
 export const deleteAcronym = (req, res) => {
   Acronym.deleteOne({ _id: req.params.acronymID }, (err, acronym) => {

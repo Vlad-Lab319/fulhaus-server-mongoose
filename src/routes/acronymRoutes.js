@@ -32,7 +32,7 @@ const routes = (app) => {
     .delete(deleteAcronym);
 
   //
-  // Search acronyms
+  // Search acronyms !!! used as a main get request
   //
 
   app.route('/acronym/search')
